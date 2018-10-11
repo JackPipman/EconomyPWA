@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "jackpipman@gmail.com",
+      "password": "12345678",
+      "name": "Администратор"
+    }
+  ],
+  "bill": {
+    "value": 99800,
+    "currency": "BYN"
+  },
+  "categories": [
+    {
+      "name": "Дом",
+      "capacity": 15000,
+      "id": 1
+    },
+    {
+      "name": "Еда",
+      "capacity": 10000,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Авто",
+      "capacity": 7000
+    },
+    {
+      "name": "Одежда",
+      "capacity": 30000,
+      "id": 4
+    }
+  ],
+  "events": []
+}

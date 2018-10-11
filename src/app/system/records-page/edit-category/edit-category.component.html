@@ -1,0 +1,69 @@
+			<div class="card">
+				<div class="card-header bordered">
+					<div class="header-block">
+						<h3 class="title">Редактировать категорию</h3>
+					</div>
+				</div>
+				<div class="card-block">
+					<div class="alert alert-{{message.type}}"
+						*ngIf="message.text"
+					>{{message.text}}</div>
+					<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+						<div class="formgroup">
+							<label class="control-label" for="e-select-category">Выберите категорию</label>
+							<select 
+								id="e-select-category" 
+								class="form-control"
+								[(ngModel)]="currentCategoryId"
+							  [ngModelOptions]="{standalone: true}"
+								(change)="onCategoryChange()"
+							>
+								<option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
+							</select>
+						</div>
+						<div 
+							class="form-group"
+							[ngClass]="{'has-error': name.invalid && name.touched}"
+						>
+							<label class="control-label" for="e-category-name">Введите название</label>
+							<input 
+								type="text" 
+								id="e-category-name" 
+								class="form-control"
+								required
+								#name="ngModel" 
+								name="name"
+								[ngModel]="currentCategory.name"
+							>
+							<span 
+								class="form-help-text"
+								*ngIf="name.invalid && name.touched"
+							>Категория должна быть заполнена</span>
+						</div>
+						<div 
+							class="form-group" 
+							[ngClass]="{'has-error': capacity.invalid && capacity.touched}"
+						>
+							<label class="control-label" for="e-category-value">Введите лимит</label>
+							<input 
+								type="number" 
+								min="1"
+								id="e-category-value" 
+								class="form-control" 
+								[ngModel]="currentCategory.capacity" 
+								name="capacity" 
+								#capacity="ngModel" 
+								required
+							>
+							<span 
+								class="form-help-text"
+								*ngIf="capacity.invalid && capacity.touched"
+							>Поле должно быть заполнено</span>
+						</div>
+						<button 
+							type="submit" 
+							class="btn btn-primary"
+							[disabled]="f.invalid">Редактировать</button>
+					</form>
+				</div>
+			</div>

@@ -1,0 +1,43 @@
+                <div class="title-block">
+                    <h3 class="title">
+                        Страница планирования <span class="sparkline bar"></span>
+                    </h3>
+                </div>
+                <section *ngIf="!isLoaded" class="section text-center">
+                    <my-loader></my-loader>
+                </section>
+                <section class="section" *ngIf="isLoaded">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-sm bordered">
+                                    <div class="header-block">
+                                        <h3 class="title">Расходы</h3>
+                                    </div>
+                                    <h5 class="planning-expenses pull-right">
+                                        Общий остаток: <span class="text-success">{{bill.value | number: '1.2-2'}}</span>
+                                    </h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row" *ngFor="let c of categories">
+                                        <div class="col-xs-6">
+                                            <div class="n-progress">
+                                                <div class="progress-bar {{getCatColorClass(c)}}" [ngStyle]="{width: getCatWidth(c)}">
+                                                    <span>{{c.name}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <p>
+                                                <span class="text-{{getCatColorClass(c)}}">{{getCategoryCost(c) | number: '1.2-2'}}</span>
+                                                из
+                                                <span class="text-primary">{{c.capacity | number: '1.2-2'}}</span>
+                                                |                                             осталось <span class="text-{{getCatColorClass(c)}}">{{(c.capacity - getCategoryCost(c)) | number: '1.2-2'}}</span> (руб.)
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>

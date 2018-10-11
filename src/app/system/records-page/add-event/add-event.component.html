@@ -1,0 +1,96 @@
+			<div class="card">
+				<div class="card-header bordered">
+					<div class="header-block">
+						<h3 class="title">Добавить событие</h3>
+					</div>
+				</div>
+				<div class="card-block">
+					<div class="alert alert-{{message.type}}"
+						 *ngIf="message.text"
+					>
+						{{message.text}}	
+					</div>
+					<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+						<div class="form-group">
+							<label class="control-label" for="category">Выберите категорию</label>
+							<select 
+								class="form-control" 
+								id="category"
+								required
+								[ngModel]="1"
+								name="category"
+							>
+								<option 
+									*ngFor="let c of categories" 
+									[value]="c.id"
+								>
+								{{c.name}}
+								</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="control-label">Выберите тип</label>
+							<div *ngFor="let t of types">
+								<label>
+									<input 
+										class="radio" 
+										name="type" 
+										type="radio"
+										required
+										[value]="t.type"
+										[ngModel]="'outcome'">
+									<span>{{t.label}}</span>
+								</label>
+							</div>
+						</div>
+						<div 
+							class="form-group"
+							[ngClass]="{'has-error': amount.invalid && amount.touched}">
+							<label class="control-label" for="amount">Введите сумму</label>
+							<input 
+								type="number" 
+								name="amount"
+								id="amount" 
+								class="form-control"
+								[ngModel]="1"
+								min="1"
+								#amount="ngModel"
+								required
+							>
+							<span 
+							  class="form-help-text" 
+							  *ngIf="amount.invalid && amount.touched"
+						    >
+							Поле обязательно для заполнения	
+						    </span>
+						</div>
+						<div 
+							class="form-group"
+							[ngClass]="{'has-error': description.invalid && description.touched}">
+							<label class="control-label" for="description">Введите описание</label>
+							<input 
+								type="text" 
+								name="description"
+								id="description" 
+								class="form-control"
+								ngModel
+								#description="ngModel"
+								required
+							>
+							<span 
+							  class="form-help-text" 
+							  *ngIf="description.invalid && description.touched"
+						    >
+							Поле обязательно для заполнения	
+						    </span>
+						</div>
+						<button 
+							type="submit" 
+							class="btn btn-primary"
+							[disabled]="f.invalid"
+						>
+							Добавить
+						</button>
+					</form>
+				</div>
+			</div>

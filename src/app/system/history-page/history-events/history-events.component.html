@@ -1,0 +1,63 @@
+<section class="section">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bordered">
+          <div class="header-block">
+            <h3 class="title">Список событий</h3>
+          </div>
+          <div class="form-inline pull-right m-r-2">
+            <div class="form-group">
+              <input type="text" 
+                     class="form-control" 
+                     [placeholder]="searchPlaceHolder"
+                     [(ngModel)]="searchValue">
+            </div>
+            <div class="btn-group" myDropdown>
+              <button type="button" class="btn btn-secondary dropdown-toggle ">
+                Параметр
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="changeCriteria('amount')">Сумма</a>
+                <a class="dropdown-item" (click)="changeCriteria('date')">Дата</a>
+                <a class="dropdown-item" (click)="changeCriteria('category')">Категория</a>
+                <a class="dropdown-item" (click)="changeCriteria('type')">Тип</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-block">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+                <th class="not-mobile">#</th>
+                <th>Сумма</th>
+                <th class="not-mobile">Дата</th>
+                <th class="not-mobile">Категория</th>
+                <th>Тип</th>
+                <th class="text-lg-center">Действие</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let e of events | myFilter:searchValue:searchField; let idx = index">
+              <th scope="row"  class="not-mobile">{{idx + 1}}</th>
+              <td>{{e.amount | number: '1.2-2'}}</td>
+              <td class="not-mobile">{{e.date | myMoment: 'DD.MM.YYYY HH:ss:ss'}}</td>
+              <td class="not-mobile">{{e.catName}}</td>
+              <td>
+                <span [ngClass]="getEventClass(e)">
+                  <span *ngIf="e.type === 'income'">Доход</span>
+                  <span *ngIf="e.type === 'outcome'">Расход</span>
+                </span>
+              </td>
+              <td class="text-lg-center">
+                <a [routerLink]="['/system/history', e.id]" class="btn btn-primary-outline">Открыть</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

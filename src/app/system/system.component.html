@@ -1,0 +1,14 @@
+<div class="main-wrapper">
+        <div class="app">
+            <!--HEADER-->
+            <my-header (onMenuOpened)="openMenu($event)"></my-header>
+            <!--HEADER-->
+            <my-sidebar [isMenuOpened]="isMenuOpened" (onCloseMenu)="closeMenu($event)"></my-sidebar>
+
+            <!--CONTENT-->
+            <article class="content dashboard-page">
+                <router-outlet></router-outlet>
+            </article>
+            <!--CONTENT-->
+        </div>
+    </div>

@@ -1,0 +1,7 @@
+.burger{
+	border: 0;
+	background-color: #d7dde4;
+	@media (min-width: 992px) {
+		display: none;
+	}
+}

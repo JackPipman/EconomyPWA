@@ -1,0 +1,23 @@
+<header class="header">
+    <div class="header-block header-block-search">
+        <button class="burger" (click)="openMenu()">
+            <span class="dark-blue-text"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+    </div>
+    <div class="header-block header-block-nav">
+        <ul class="nav-profile">
+            <li class="profile dropdown" myDropdown>
+                <a class="nav-link dropdown-toggle" role="button">
+                    <span class="name">
+                        Здравствуйте, {{user.name || "Карина"}}
+                    </span>
+                </a>
+                <div class="dropdown-menu profile-dropdown-menu">
+                    <a class="dropdown-item" [routerLink]="['/system', 'records']"> <i class="fa fa-gear icon"></i>Сделать запись</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="onLogout()"><i class="fa fa-power-off icon"></i>Выйти</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
